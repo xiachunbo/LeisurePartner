@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+            <title></title>
+            <script src="js/mui.min.js"></script>
+            <link href="css/mui.min.css" rel="stylesheet"/>
+            <script type="text/javascript" charset="utf-8">
+                mui.init();
+                </script>
+    </head>
+    <body>
+          <!--<header class="mui-bar mui-bar-nav">
+            <!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
+            <!--<h1 class="mui-title">欢迎登录</h1>-->
+       <!-- </header>-->
+        <div class="mui-content">
+            <div id="input_example" class="mui-input-group" style="margin-top: 30px;">
+                <div class="mui-input-row">
+                    <label>用户名：</label>
+                    <input id="username" type="text" class="mui-input-clear" placeholder="请输入用户名">
+                        </div>
+                <div class="mui-input-row">
+                    <label>密码：</label>
+                    <input id="password" type="password" class="mui-input-clear mui-input-password" placeholder="请输入密码">
+                        </div>
+            </div>
+            <div class="mui-button-row" style="margin-top:30px">
+                <button type="button" data-loading-text="登录中" class="mui-btn mui-btn-primary" style="width:80%;height: 40px;">登录</button>
+                <!--<button type="button" class="mui-btn mui-btn-danger" >取消</button>-->
+            </div>
+        </div>
+        <script type="text/javascript">
+            mui(document.body).on('tap', '.mui-btn', function(e) {
+                                  mui("#input_example input").each(function() {
+                                                                   //若当前input为空，则alert提醒
+                                                                   if(!this.value || this.value.trim() == "") {
+                                                                   var label = this.previousElementSibling;
+                                                                   mui.alert(label.innerText + "不允许为空");
+                                                                   check = false;
+                                                                   return false;
+                                                                   }else{
+                                                                   check =true;
+                                                                   }
+                                                                   }); //校验通过，继续执行业务逻辑
+                                  if(check){
+                                  mui('.mui-btn').button('loading');
+                                  var myname =  document.getElementById("username").value;
+                                  var mypasswd =     document.getElementById("password").value;
+                                  mui.ajax('http://mui.zefei/api/Public/Tiangu/?service=User.checkLogin',{
+                                           data:{
+                                           username:myname,
+                                           password:mypasswd
+                                           },
+                                           dataType:'jsonp',//服务器返回json格式数据
+                                           type:'get',//HTTP请求类型
+                                           success:function(data){
+                                           //获得服务器响应
+                                           mui('.mui-btn').button('reset');
+                                           var res = JSON.parse(data);
+                                           if(res.data.code == 200){
+                                           mui.toast(res.data.info.username+',登录成功！',{ duration:'long', type:'div' });
+                                           }else{
+                                           mui.toast(res.data.msg,{ duration:'long', type:'div' });
+                                           }
+                                           }
+                                           });
+                                  }
+                                  });
+            </script>
+    </body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>列表</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <script src="js/rem.js"></script> 
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="css/page.css"/>
+    <link rel="stylesheet" type="text/css" href="css/all.css"/>
+    <link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/loaders.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/loading.css"/>
+    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+<script type="text/javascript">
+	$(window).load(function(){
+           
+	})
+    function linkDetail(url){
+        location.href="goDetail://shareClick?title="+url;
+    }
+    function getDatas(json){
+        var html = '';
+        for(var p in json.data.tech){//遍历json数组时，这么写p为索引，0,1
+            html += ' <div class=\"lie clearfloat\">';
+            html += '<a href=\"javascript:linkDetail('+"'"+json.data.tech[p].link+"'"+')\">';
+            html += '<div class=\"tu clearfloat fl\">';
+            for(var picInfo in json.data.tech[p].picInfo){
+                html += '<img src="'+json.data.tech[p].picInfo[picInfo].url+'"/>';
+            }
+            html += '</div>';
+            html += '</a>';
+            html += '<div class=\"right clearfloat fl\">';
+            html += '<a href=\"javascript:linkDetail('+"'"+json.data.tech[p].link+"'"+')\">';
+            html += '<p class=\"tit\">'+json.data.tech[p].title+'</p>';
+            html += '</a>';
+            html += '<div class=\"xia clearfloat\">';
+            html += '<a href=\"javascript:linkDetail('+"'"+json.data.tech[p].link+"'"+')\">';
+            html += '<p class=\"jifen fl over\">'+json.data.tech[p].source+'</p>';
+            html += '</a>';
+            html += '</div>';
+            html += '</div>';
+            html += '</div>';
+        }
+        $("#datas").append(html);
+    }
+</script>
+</head>
+<!--loading页开始-->
+<!--<div class="loading">
+	<div class="loader">
+        <div class="loader-inner pacman">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+	</div>
+</div>-->
+<!--loading页结束-->
+	<body>
+		<!--header star-->
+	   <!--<header class="mui-bar mui-bar-nav" id="header">
+			<a class="btn" href="javascript:history.go(-1)">
+	            <i class="iconfont icon-fanhui"></i>
+	        </a>
+	        <div class="top-sch-box flex-col">
+	            <div class="centerflex">
+	                <i class="fdj iconfont icon-sousuo"></i>
+	                <input type="text" name="" id="" value="" class="sch-txt" placeholder="输入您要搜索的商品" />
+	            </div>
+	        </div>
+	        <a class="btn" href="#">
+	            <i class="iconfont icon-gouwuche"></i>
+	            <span>2</span>
+	        </a>
+	    </header>-->
+		<!--header end-->
+		
+        <div class="warp clearfloat" style="margin-top:-48px;height:80%;">
+			<div class="lists clearfloat">
+				 <!--<div class="top clearfloat">
+					<ul>
+						<li>默认</li>
+						<li>价格<i class="iconfont icon-xiala"></i></li>
+						<li>销量<i class="iconfont icon-xiala"></i></li>
+					</ul>
+				</div>-->
+				<div class="bottom clearfloat" id="datas">
+					
+					
+					
+				</div>
+			</div>
+		</div>
+		
+		
+		<!--footer star-->
+        <!--<footer class="page-footer fixed-footer" id="footer" style="display:none;margin-top:-48px;">
+			<ul>
+				<li>
+					<a href="index.html">
+						<i class="iconfont icon-shouye"></i>
+						<p>首页</p>
+					</a>
+				</li>
+				<li class="active">
+					<a href="cation.html">
+						<i class="iconfont icon-icon04"></i>
+						<p>分类</p>
+					</a>
+				</li>
+				<li>
+					<a href="shopcar.html">
+						<i class="iconfont icon-gouwuche"></i>
+						<p>购物车</p>
+					</a>
+				</li>
+				<li>
+					<a href="login.html">
+						<i class="iconfont icon-yonghuming"></i>
+						<p>我的</p>
+					</a>
+				</li>
+			</ul>
+		</footer>-->
+		<!--footer end-->
+	</body>
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+    <script src="js/others.js"></script>
+    <script type="text/javascript" src="js/hmt.js" ></script>
+    <script src="slick/slick.js" type="text/javascript" ></script>
+    <script src="js/mui.min.js" type="text/javascript" ></script>
+    <!--插件-->
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <script src="js/swiper.jquery.min.js"></script>
+</html>
